@@ -1,75 +1,175 @@
-/* Home page styles */
-@font-face {
-    font-family: 'cakefont';
-    src: url('../font/cakedingbats-webfont.eot');
-    src: url('../font/cakedingbats-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../font/cakedingbats-webfont.woff2') format('woff2'),
-    url('../font/cakedingbats-webfont.woff') format('woff'),
-    url('../font/cakedingbats-webfont.ttf') format('truetype'),
-    url('../font/cakedingbats-webfont.svg#cake_dingbatsregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+/* ================= GLOBAL ================= */
 body {
-    padding: 60px 0;
-}
-header {
-    margin-bottom: 60px;
-}
-img {
-    margin-bottom: 30px;
-}
-h1 {
-    font-weight: bold;
-}
-ul {
-    list-style-type: none;
-    margin: 0 0 30px 0;
-    padding-left: 25px;
-}
-a {
-    color: #0071BC;
-    text-decoration: underline;
-}
-hr {
-    border-bottom: 1px solid #e7e7e7;
-    border-top: 0;
-    margin-bottom: 35px;
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #6a5af9, #00c6ff);
+  min-height: 100vh;
+  color: white;
 }
 
-.text-center {
-    text-align: center;
+/* ================= PAGE WRAPPER ================= */
+.home-page {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
-.links a {
-    margin-right: 10px;
+
+/* ================= TOPBAR ================= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
-.release-name {
-    color: #D33C43;
-    font-weight: 400;
-    font-style: italic;
+.topbar .logo {
+  font-size: 23px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
 }
-.bullet:before {
-    font-family: 'cakefont', sans-serif;
-    font-size: 18px;
-    display: inline-block;
-    margin-left: -1.3em;
-    width: 1.2em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    vertical-align: -1px;
+.topbar .user-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
-.success:before {
-    color: #88c671;
-    content: "\0056";
+.topbar .user-box .user {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
 }
-.problem:before {
-    color: #d33d44;
-    content: "\0057";
+.topbar .user-box .logout-btn {
+  background: linear-gradient(135deg, #ff4d4d, #ff7676);
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
 }
-.cake-error {
-    padding: 10px;
-    margin: 10px 0;
+.topbar .user-box .logout-btn:hover {
+  transform: scale(1.05);
 }
-#url-rewriting-warning {
-    display: none;
+
+/* ================= WELCOME ================= */
+.welcome {
+  text-align: center;
+  margin: 50px 0 30px;
 }
+.welcome h1 {
+  font-size: 38px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.welcome p {
+  opacity: 0.8;
+  font-size: 16px;
+}
+
+/* ================= GRID ================= */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* ================= CARD ================= */
+.game-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.game-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+.game-card .icon {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+.game-card h3 {
+  margin: 10px 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+.game-card p {
+  font-size: 16px;
+  opacity: 0.8;
+  min-height: 40px;
+}
+.game-card .btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  position: relative;
+  z-index: 2;
+}
+.game-card .btn:hover {
+  transform: scale(1.08);
+}
+
+/* ================= COLOR THEMES ================= */
+.red .btn {
+  background: linear-gradient(135deg, #ff4d4d, #ff7676);
+}
+.red::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 77, 77, 0.3);
+  border-radius: 50%;
+  top: -50px;
+  right: -50px;
+  filter: blur(40px);
+}
+
+.green .btn {
+  background: linear-gradient(135deg, #2ecc71, #55efc4);
+}
+.green::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(46, 204, 113, 0.3);
+  border-radius: 50%;
+  top: -50px;
+  right: -50px;
+  filter: blur(40px);
+}
+
+.blue .btn {
+  background: linear-gradient(135deg, #6a5af9, #00c6ff);
+}
+.blue::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(106, 90, 249, 0.3);
+  border-radius: 50%;
+  top: -50px;
+  right: -50px;
+  filter: blur(40px);
+}
+
+/*# sourceMappingURL=home.css.map */

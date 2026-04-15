@@ -1,0 +1,124 @@
+
+
+
+$primary: #6a5af9;
+$secondary: #00c6ff;
+$bg-gradient: linear-gradient(135deg, #6a5af9, #00c6ff);
+$card-bg: #ffffff;
+$text-color: #333;
+$border-radius: 16px;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: $bg-gradient;
+  
+}
+
+.login-container .auth-container{
+  background: $card-bg;
+  padding: 40px;
+  border-radius: $border-radius;
+  width: 350px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    background: $primary;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+  }
+
+  h2 {
+    margin-bottom: 5px;
+    color: $text-color;
+  }
+
+  p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    text-align: left;
+    margin-bottom: 15px;
+
+    label {
+      font-size: 14px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: $bg-gradient;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .register {
+    margin-top: 15px;
+    font-size: 14px;
+
+    a {
+      color: $primary;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6a5af9, #00c6ff);
+}
+.icon {
+  width: 60px;
+  height: 60px;
+  background: #6a5af9;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: white;
+    font-size: 24px;
+  }
+}
+//register page
+
+

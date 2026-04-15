@@ -1,0 +1,85 @@
+@charset "UTF-8";
+.dashboard {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+}
+
+/* 🔝 NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #111827;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #4f46e5;
+}
+
+.logout {
+  color: #ef4444;
+}
+
+/* 🏠 HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 32px;
+}
+
+/* 🎮 GAMES */
+.games {
+  padding: 20px 40px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  background: #1f2937;
+  padding: 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  background: #374151;
+}
+
+.game-card span {
+  display: block;
+  font-size: 12px;
+  margin-top: 8px;
+  color: #9ca3af;
+}
+
+/*# sourceMappingURL=dashboard.css.map */
