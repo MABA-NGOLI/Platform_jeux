@@ -4,7 +4,7 @@ body {
   background: linear-gradient(135deg, #6a5af9, #00c6ff);
 }
 
-.login-container .auth-container {
+.login-container {
   background: #ffffff;
   padding: 40px;
   border-radius: 16px;
@@ -12,7 +12,7 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
-.login-container .auth-container .icon {
+.login-container .icon {
   width: 60px;
   height: 60px;
   background: #6a5af9;
@@ -24,35 +24,35 @@ body {
   color: white;
   font-size: 24px;
 }
-.login-container .auth-container h2 {
+.login-container h2 {
   margin-bottom: 5px;
   color: #333;
 }
-.login-container .auth-container p {
+.login-container p {
   color: #777;
   font-size: 14px;
   margin-bottom: 25px;
 }
-.login-container .auth-container .form-group {
+.login-container .form-group {
   text-align: left;
   margin-bottom: 15px;
 }
-.login-container .auth-container .form-group label {
+.login-container .form-group label {
   font-size: 14px;
   color: #555;
 }
-.login-container .auth-container .form-group input {
+.login-container .form-group input {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ddd;
   margin-top: 5px;
 }
-.login-container .auth-container .form-group input:focus {
+.login-container .form-group input:focus {
   outline: none;
   border-color: #6a5af9;
 }
-.login-container .auth-container .btn {
+.login-container .btn {
   width: 100%;
   padding: 12px;
   border: none;
@@ -63,14 +63,14 @@ body {
   cursor: pointer;
   margin-top: 10px;
 }
-.login-container .auth-container .btn:hover {
+.login-container .btn:hover {
   opacity: 0.9;
 }
-.login-container .auth-container .register {
+.login-container .register {
   margin-top: 15px;
   font-size: 14px;
 }
-.login-container .auth-container .register a {
+.login-container .register a {
   color: #6a5af9;
   text-decoration: none;
   font-weight: bold;

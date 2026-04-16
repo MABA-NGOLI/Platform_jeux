@@ -17,9 +17,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- CSS FRAMEWORK -->
     <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- CSS PERSO (IMPORTANT : à la fin pour écraser les autres) -->
-    <?= $this->Html->css(['home', 'auth']) ?>
+  
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

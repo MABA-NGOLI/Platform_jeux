@@ -34,7 +34,7 @@
             ]) ?>
         </div>
 
-        <?= $this->Form->button('→ Se connecter', [
+        <?= $this->Form->button('-> Se connecter', [
             'class' => 'btn'
         ]) ?>
 

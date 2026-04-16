@@ -23,11 +23,21 @@ class GamesTable extends Table
             'dependent' => true
         ]);
 
-        // relation users (optionnel mais utile)
+        // relation users 
         $this->belongsToMany('Users', [
             'through' => 'UsersInGames'
         ]);
+
+        //relation fillersettings
+
+        $this->hasOne('FillerSettings', [
+            'foreignKey' => 'game_id',
+            'dependent' => true,
+            'propertyName' => 'fillersettings'
+        ]);
+        
     }
+
 
     public function validationDefault(Validator $validator): Validator
     {
@@ -38,7 +48,7 @@ class GamesTable extends Table
             ->notEmptyString('name')
 
             ->scalar('status')
-            ->inList('status', ['playing', 'finished'])
+            ->inList('status', ['waiting', 'playing', 'finished'])
             ->notEmptyString('status')
 
             ->scalar('secret_code')

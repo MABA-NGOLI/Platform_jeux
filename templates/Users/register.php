@@ -1,4 +1,3 @@
-
 <?= $this->Html->css('auth') ?>
 
 <div class="auth-page">

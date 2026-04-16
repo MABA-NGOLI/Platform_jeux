@@ -6,7 +6,8 @@
 
     <header class="topbar">
         <div class="logo">
-            🎮 <span>Plateforme de Jeux</span>
+            <i class="fas fa-gamepad"></i>
+            <span>Plateforme de Jeux</span>
         </div>
 
         <div class="user-box">
@@ -26,17 +27,17 @@
         </div>
     </header>
 
-    <!-- TITLE -->
     <div class="welcome">
-        <h1>Bienvenue, <?= h($user['username'] ?? 'User') ?> !</h1>!</h1>
+        <h1>Bienvenue, <?= h($user['username'] ?? 'User') ?> !</h1>
         <p>Choisissez un jeu pour commencer</p>
     </div>
 
     <div class="games-grid">
 
-        <!-- Mastermind -->
         <div class="game-card red">
-            <div class="icon">🧠</div>
+            <div class="icon">
+               <i class="fas fa-brain"></i>
+            </div>
             <h3>Mastermind</h3>
             <p>Jeu solo</p>
             <p>Devinez la combinaison secrète</p>
@@ -44,19 +45,22 @@
             <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'startMastermind'], ['class' => 'btn']) ?>
         </div>
 
-        <!-- Filler -->
         <div class="game-card green">
-            <div class="icon">▦</div>
+        
+            <div class="icon">
+                <i class="fas fa-border-all"></i>
+            </div>
             <h3>Filler</h3>
             <p>Multijoueur</p>
             <p>Conquérez le territoire</p>
 
-            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'filler'], ['class' => 'btn']) ?>
+            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'startFiller'], ['class' => 'btn']) ?>
         </div>
 
-        <!-- Labyrinthe -->
         <div class="game-card blue">
-            <div class="icon">🧭</div>
+            <div class="icon">
+                <i class="fas fa-route"></i>
+            </div>
             <h3>Labyrinthe</h3>
             <p>Multijoueur</p>
             <p>Trouvez le trésor en premier</p>

@@ -1,5 +1,3 @@
-/* ================= GLOBAL ================= */
-
 body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', sans-serif;
@@ -8,7 +6,6 @@ body {
   color: white;
 }
 
-/* ================= PAGE WRAPPER ================= */
 
 .home-page {
   padding: 30px;
@@ -16,7 +13,6 @@ body {
   margin: auto;
 }
 
-/* ================= TOPBAR ================= */
 
 .topbar {
   display: flex;
@@ -27,6 +23,8 @@ body {
   backdrop-filter: blur(10px);
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+
+
 
   .logo {
     font-size: 23px;
@@ -65,7 +63,6 @@ body {
   }
 }
 
-/* ================= WELCOME ================= */
 
 .welcome {
   text-align: center;
@@ -83,7 +80,6 @@ body {
   }
 }
 
-/* ================= GRID ================= */
 
 .games-grid {
   display: grid;
@@ -92,7 +88,6 @@ body {
   margin-top: 40px;
 }
 
-/* ================= CARD ================= */
 
 .game-card {
   background: rgba(255, 255, 255, 0.12);
@@ -144,8 +139,6 @@ body {
     }
   }
 }
-
-/* ================= COLOR THEMES ================= */
 
 .red {
   .btn {

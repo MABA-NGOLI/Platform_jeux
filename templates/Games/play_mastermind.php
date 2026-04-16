@@ -3,7 +3,7 @@
 <div class="page-shell">
     <div class="top-nav">
         <?= $this->Html->link(
-            '← Accueil',
+            '← Retour',
             ['controller' => 'Pages', 'action' => 'display', 'home'],
             ['class' => 'back-link']
         ) ?>
@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <?= $this->Form->control('guess', [
-                        'label' => 'Votre tentative',
+                        'label' => 'Votre proposition',
                         'maxlength' => 4,
                         'placeholder' => 'Ex : 1234',
                         'class' => 'input',
