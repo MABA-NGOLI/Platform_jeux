@@ -42,7 +42,7 @@
             <p>Jeu solo</p>
             <p>Devinez la combinaison secrète</p>
 
-            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'startMastermind'], ['class' => 'btn']) ?>
+            <?= $this->Html->link('Jouer', ['controller' => 'Mastermind', 'action' => 'startMastermind'], ['class' => 'btn']) ?>
         </div>
 
         <div class="game-card green">
@@ -54,7 +54,7 @@
             <p>Multijoueur</p>
             <p>Conquérez le territoire</p>
 
-            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'startFiller'], ['class' => 'btn']) ?>
+            <?= $this->Html->link('Jouer', ['controller' => 'Filler', 'action' => 'startFiller'], ['class' => 'btn']) ?>
         </div>
 
         <div class="game-card blue">
@@ -65,7 +65,7 @@
             <p>Multijoueur</p>
             <p>Trouvez le trésor en premier</p>
 
-            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'labyrinthe'], ['class' => 'btn']) ?>
+            <?= $this->Html->link('Jouer', ['controller' => 'Games', 'action' => 'startLabyrinth'], ['class' => 'btn']) ?>
         </div>
 
     </div>

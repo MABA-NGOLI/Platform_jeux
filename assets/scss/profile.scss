@@ -1,0 +1,137 @@
+$primary: #6a5af9;
+$secondary: #00c6ff;
+$bg-gradient: linear-gradient(135deg, $primary, $secondary);
+
+$card: rgba(255, 255, 255, 0.95);
+$text: #1f2937;
+$text-soft: #6b7280;
+
+$radius: 18px;
+$shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: $bg-gradient;
+}
+
+.profile-page {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  background: $card;
+  border-radius: $radius;
+  padding: 24px;
+  box-shadow: $shadow;
+  margin-bottom: 30px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    color: $text;
+  }
+
+  p {
+    margin: 5px 0 0;
+    color: $text-soft;
+  }
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  background: $bg-gradient;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* GRID DES JEUX */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARTE JEU */
+.game-card {
+  background: $card;
+  border-radius: $radius;
+  padding: 20px;
+  box-shadow: $shadow;
+  text-align: center;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  h3 {
+    margin: 10px 0;
+    color: $text;
+  }
+
+  p {
+    margin: 5px 0;
+    color: $text-soft;
+
+    strong {
+      color: $text;
+    }
+  }
+}
+
+/* ICONES */
+.icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: white;
+    font-size: 24px;
+  }
+}
+
+/* COULEURS PAR JEU */
+.game-card.red .icon {
+  background: #ef4444;
+}
+
+.game-card.green .icon {
+  background: #22c55e;
+}
+
+.game-card.blue .icon {
+  background: #3b82f6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

@@ -30,7 +30,7 @@
 
             <?php if ($game->status === 'waiting'): ?>
                 <div class="info-box">
-                    En attente d’un deuxième joueur.
+                    En attente d'un deuxième joueur.
                 </div>
 
                 <?php if ($joinLink): ?>
@@ -46,7 +46,7 @@
                     <?php if ((int)$settings->current_turn_user_id === ($isPlayerOne ? $settings->player_one_id : $settings->player_two_id)): ?>
                         À votre tour.
                     <?php else: ?>
-                        Tour de l’adversaire.
+                        Tour de l'adversaire.
                     <?php endif; ?>
                 </div>
 
@@ -54,7 +54,7 @@
                     <?php foreach ($availableColors as $color): ?>
                         <?= $this->Html->link(
                             '',
-                            ['controller' => 'Games', 'action' => 'chooseFillerColor', $game->id, $color],
+                            ['controller' => 'Filler', 'action' => 'chooseFillerColor', $game->id, $color],
                             ['class' => 'color-btn ' . $color]
                         ) ?>
                     <?php endforeach; ?>
@@ -72,7 +72,7 @@
 
                 <?= $this->Html->link(
                     'Créer une nouvelle partie',
-                    ['controller' => 'Games', 'action' => 'startFiller'],
+                    ['controller' => 'Filler', 'action' => 'startFiller'],
                     ['class' => 'main-btn']
                 ) ?>
             <?php endif; ?>

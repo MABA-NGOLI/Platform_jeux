@@ -35,7 +35,7 @@
                 <div class="actions">
                     <?= $this->Html->link(
                         'Rejouer',
-                        ['controller' => 'Games', 'action' => 'startMastermind'],
+                        ['controller' => 'Mastermind', 'action' => 'startMastermind'],
                         ['class' => 'btn']
                     ) ?>
                 </div>
@@ -58,11 +58,7 @@
 
                 <?= $this->Form->end() ?>
 
-            <?php endif; ?>
-
-            <div class="help">
-                <p>4 chiffres entre 0 et 9</p>
-            </div>
+            <?php endif; ?>           
 
         </div>
     </div>

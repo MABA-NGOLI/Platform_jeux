@@ -35,7 +35,19 @@ class GamesTable extends Table
             'dependent' => true,
             'propertyName' => 'fillersettings'
         ]);
+
+        //relation boardgames
+        $this->belongsTo('BoardGames', [
+            'foreignKey' => 'board_game_id'
+        ]);
         
+
+        //relation labyrinthsettings
+        $this->hasOne('LabyrinthSettings', [
+            'foreignKey' => 'game_id',
+            'dependent' => true,
+            'propertyName' => 'labyrinth_settings'
+    ]);
     }
 
 

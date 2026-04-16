@@ -5,7 +5,7 @@ namespace App\Controller;
 
 class UsersController extends AppController
 {
-    // Liste des utilisateurs (option admin/debug)
+    // Liste des utilisateurs
     public function index()
     {
         $users = $this->paginate($this->Users->find());
@@ -19,19 +19,16 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
-    // 📝 Inscription
+    // Inscription
     public function register()
     {
         $user = $this->Users->newEmptyEntity();
 
         if ($this->request->is('post')) {
-
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
             if ($this->Users->save($user)) {
-
                 $this->Flash->success('Compte créé avec succès.');
-
                 return $this->redirect(['action' => 'login']);
             }
 
@@ -41,90 +38,142 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
-    //  Connexion
+    // Connexion
     public function login()
-{
-    // 🔥 supprime redirection automatique cassée
-    $this->request->getSession()->delete('Auth.redirect');
+    {
+        // Supprime une éventuelle redirection cassée
+        $this->request->getSession()->delete('Auth.redirect');
 
-    if ($this->request->is('post')) {
+        if ($this->request->is('post')) {
+            $email = $this->request->getData('email');
+            $password = $this->request->getData('password');
 
-        $email = $this->request->getData('email');
-        $password = $this->request->getData('password');
+            $user = $this->Users->find()
+                ->where(['email' => $email])
+                ->first();
 
-        $user = $this->Users->find()
-            ->where(['email' => $email])
-            ->first();
+            if ($user && password_verify($password, $user->password)) {
+                $this->request->getSession()->write('User', $user);
 
-        if ($user && password_verify($password, $user->password)) {
+                $this->Flash->success('Connexion réussie.');
+                return $this->redirect('/');
+            }
 
-            $this->request->getSession()->write('User', $user);
-
-            $this->Flash->success('Connexion réussie.');
-
-            return $this->redirect('/');
+            $this->Flash->error('Email ou mot de passe incorrect.');
         }
-
-        $this->Flash->error('Email ou mot de passe incorrect.');
     }
-}
 
-    // 👤 Profil utilisateur
+    // Profil utilisateur
     public function profile()
     {
-        $user = $this->request->getSession()->read('User');
+        $userSession = $this->request->getSession()->read('User');
 
-        if (!$user) {
-            $this->Flash->error('Veuillez vous connecter.');
+        if (!$userSession) {
             return $this->redirect(['action' => 'login']);
         }
 
-        $this->set(compact('user'));
+        $user = $this->Users->get($userSession->id);
+        $usersInGames = $this->fetchTable('UsersInGames');
+
+        // Mastermind : parties terminées seulement
+        $mastermindGames = $usersInGames->find()
+            ->contain(['Games'])
+            ->where([
+                'UsersInGames.user_id' => $user->id,
+                'Games.name' => 'mastermind',
+                'Games.status' => 'finished'
+            ])
+            ->all()
+            ->toList();
+
+        $mastermindCount = count($mastermindGames);
+        $mastermindBest = !empty($mastermindGames)
+            ? min(array_map(fn($g) => (int)$g->score, $mastermindGames))
+            : '-';
+
+        // Filler : parties terminées seulement
+        $fillerGames = $usersInGames->find()
+            ->contain(['Games'])
+            ->where([
+                'UsersInGames.user_id' => $user->id,
+                'Games.name' => 'filler',
+                'Games.status' => 'finished'
+            ])
+            ->all()
+            ->toList();
+
+        $fillerCount = count($fillerGames);
+        $fillerBest = !empty($fillerGames)
+            ? max(array_map(fn($g) => (int)$g->score, $fillerGames))
+            : '-';
+
+        // Labyrinthe : toutes les parties pour compter les victoires
+        $labyrinthGames = $usersInGames->find()
+            ->contain(['Games'])
+            ->where([
+                'UsersInGames.user_id' => $user->id,
+                'Games.name' => 'labyrinth'
+            ])
+            ->all()
+            ->toList();
+
+        $labyrinthCount = count($labyrinthGames);
+        $labyrinthWins = count(array_filter($labyrinthGames, function ($g) {
+            return (int)$g->is_winner === 1;
+        }));
+
+        $this->set(compact(
+            'user',
+            'mastermindCount',
+            'mastermindBest',
+            'fillerCount',
+            'fillerBest',
+            'labyrinthCount',
+            'labyrinthWins'
+        ));
     }
 
-    //  Modifier profil
+    // Modifier uniquement le username
     public function edit()
     {
         $userSession = $this->request->getSession()->read('User');
 
         if (!$userSession) {
-            $this->Flash->error('Accès refusé.');
             return $this->redirect(['action' => 'login']);
         }
 
         $user = $this->Users->get($userSession->id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = [
+                'username' => $this->request->getData('username')
+            ];
 
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user = $this->Users->patchEntity($user, $data);
 
             if ($this->Users->save($user)) {
-
-                // mise à jour session
+                // met à jour la session avec le nouveau username
                 $this->request->getSession()->write('User', $user);
 
-                $this->Flash->success('Profil mis à jour.');
-
+                $this->Flash->success('Nom d’utilisateur mis à jour.');
                 return $this->redirect(['action' => 'profile']);
             }
 
-            $this->Flash->error('Erreur lors de la modification.');
+            $this->Flash->error('Impossible de mettre à jour le profil.');
         }
 
         $this->set(compact('user'));
     }
 
-    //  Déconnexion
+    // Déconnexion
     public function logout()
     {
         $this->request->getSession()->destroy();
-
         $this->Flash->success('Déconnexion réussie.');
-
         return $this->redirect(['action' => 'login']);
     }
 
-    //  Supprimer compte
+    // Supprimer compte
     public function delete()
     {
         $userSession = $this->request->getSession()->read('User');
@@ -137,31 +186,25 @@ class UsersController extends AppController
         $user = $this->Users->get($userSession->id);
 
         if ($this->Users->delete($user)) {
-
             $this->request->getSession()->destroy();
-
             $this->Flash->success('Compte supprimé avec succès.');
-
             return $this->redirect(['action' => 'register']);
         }
 
         $this->Flash->error('Impossible de supprimer le compte.');
-
         return $this->redirect(['action' => 'profile']);
     }
 
-
-    // Dashboard utilisateur (exemple d’accès aux jeux)
+    // Dashboard utilisateur
     public function dashboard()
-{
-    $user = $this->request->getSession()->read('User');
+    {
+        $user = $this->request->getSession()->read('User');
 
-    // Si pas connecté, rediriger vers login
-    if (!$user) {
-        $this->Flash->error('Veuillez vous connecter.');
-        return $this->redirect(['action' => 'login']);
+        if (!$user) {
+            $this->Flash->error('Veuillez vous connecter.');
+            return $this->redirect(['action' => 'login']);
+        }
+
+        $this->set(compact('user'));
     }
-
-    $this->set(compact('user'));
-}
 }
